@@ -1,0 +1,17 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "My fisrt API with NodeJs",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "keywords": [],
+  "author": "Ayena",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
+  }
+}
