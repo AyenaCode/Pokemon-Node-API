@@ -12,6 +12,11 @@ app.get("/api/pokemon/:id", (req, res) => {
   res.send(`Vous avez demander le pokemon numero ${pokemon.name}`);
 });
 
+app.get("/api/pokemons", (req, res) => {
+  res.send(`Nous avons ${pokemons.length} pokemons à l'état actuel`);
+});
+
+//Lancer le server
 app.listen(port, () =>
   console.log(`Notre appli est sur : http://localhost:${port}`)
 );
