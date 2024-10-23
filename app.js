@@ -9,7 +9,7 @@ app.get("/", (req, res) => res.send("Hello express")); //endPoint sur la route p
 app.get("/api/pokemon/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const pokemon = pokemons.find((pokemon) => pokemon.id === id);
-  res.send(`Vous avez demander le pokemon numero ${pokemon.name}`);
+  res.json(pokemon);
 });
 
 app.get("/api/pokemons", (req, res) => {
