@@ -1,14 +1,14 @@
 const expresss = require("express");
 let pokemons = require("./mock-pokemon");
+const morgan = require("morgan");
 const { success } = require("./_helper");
-const { logger } = require("./Middlewares/logger");
+// const { logger } = require("./Middlewares/logger"); //own middleware
 
 const app = expresss();
 const port = 3000;
 
-//Middleware
-
-app.use(logger);
+//Middleware externe
+app.use(morgan("dev"));
 
 //Route principale
 app.get("/", (req, res) => res.send("Hello express")); //endPoint sur la route principal
