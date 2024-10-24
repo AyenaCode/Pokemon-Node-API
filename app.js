@@ -41,6 +41,17 @@ app.post("/api/pokemons", (req, res) => {
   res.json(success(message, pokemonCreated));
 });
 
+//------Les PUT : Modification--------
+app.put("/api/pokemon/:id", (req, res) => {
+  const id = parseInt(req.params.id);
+  const pokemonUpdated = { ...req.body, id: id };
+  pokemons = pokemons.map((pokemon) => {
+    return pokemon.id === id ? pokemonUpdated : pokemon;
+  });
+  const message = `Le pokemon ${pokemonUpdated.name} a bien été modifié`;
+  res.json(success(message, pokemonUpdated));
+});
+
 //----Lancer le server-------
 app.listen(port, () =>
   console.log(`Server is runing : http://localhost:${port}`)
