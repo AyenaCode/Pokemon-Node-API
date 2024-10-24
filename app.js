@@ -1,15 +1,13 @@
 const expresss = require("express");
 let pokemons = require("./mock-pokemon");
 const { success } = require("./_helper");
+const { logger } = require("./Middlewares/logger");
 
 const app = expresss();
 const port = 3000;
 
 //Middleware
-const logger = (req, res, next) => {
-  console.log(`Url : ${req.url}`);
-  next();
-};
+
 app.use(logger);
 
 //Route principale
