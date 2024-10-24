@@ -3,13 +3,17 @@ let pokemons = require("./mock-pokemon");
 const servFavicon = require("serve-favicon");
 const morgan = require("morgan");
 const { success, getUniqueId } = require("./_helper");
+const bodyParser = require("body-parser");
 // const { logger } = require("./Middlewares/logger"); //own middleware
 
 const app = expresss();
 const port = 3000;
 
-//Middleware externe
-app.use(servFavicon(__dirname + "/favicon.ico")).use(morgan("dev"));
+//Middlewares externes
+app
+  .use(servFavicon(__dirname + "/favicon.ico"))
+  .use(morgan("dev"))
+  .use(bodyParser.json());
 
 //Route principale
 app.get("/", (req, res) => res.send("Hello express")); //endPoint sur la route principal
