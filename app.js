@@ -15,16 +15,16 @@ app
   .use(morgan("dev"))
   .use(bodyParser.json());
 
-//Route principale
+//-------Route principale avec GET-------
 app.get("/", (req, res) => res.send("Hello express")); //endPoint sur la route principal
 
-//tous les pokemons
+//Route de tous les pokemons
 app.get("/api/pokemons", (req, res) => {
   const message = "La liste des pokemons a bien été trouvée";
   res.json(success(message, pokemons));
 });
 
-//Un seul pokemon
+//Route d'un seul pokemon
 app.get("/api/pokemon/:id", (req, res) => {
   const id = parseInt(req.params.id);
   const pokemon = pokemons.find((pokemon) => pokemon.id === id);
@@ -32,7 +32,7 @@ app.get("/api/pokemon/:id", (req, res) => {
   res.json(success(message, pokemon));
 });
 
-//--------Les post : Ajouter des resources---------
+//--------Les POST : Ajouter des resources---------
 app.post("/api/pokemons", (req, res) => {
   const id = getUniqueId(pokemons);
   const pokemonCreated = { ...req.body, ...{ id: id, created: new Date() } };
