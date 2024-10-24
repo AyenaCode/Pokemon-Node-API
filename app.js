@@ -1,14 +1,15 @@
 const expresss = require("express");
 let pokemons = require("./mock-pokemon");
+const servFavicon = require("serve-favicon");
 const morgan = require("morgan");
-const { success } = require("./_helper");
+const { success, getUniqueId } = require("./_helper");
 // const { logger } = require("./Middlewares/logger"); //own middleware
 
 const app = expresss();
 const port = 3000;
 
 //Middleware externe
-app.use(morgan("dev"));
+app.use(servFavicon(__dirname + "/favicon.ico")).use(morgan("dev"));
 
 //Route principale
 app.get("/", (req, res) => res.send("Hello express")); //endPoint sur la route principal
@@ -27,7 +28,16 @@ app.get("/api/pokemon/:id", (req, res) => {
   res.json(success(message, pokemon));
 });
 
-//Lancer le server
+//--------Les post : Ajouter des resources---------
+app.post("/api/pokemons", (req, res) => {
+  const id = getUniqueId(pokemons);
+  const pokemonCreated = { ...req.body, ...{ id: id, created: new Date() } };
+  pokemons.push(pokemonCreated);
+  const message = `Le pokemon ${pokemonCreated.name} a été crée`;
+  res.json(success(message, pokemonCreated));
+});
+
+//----Lancer le server-------
 app.listen(port, () =>
   console.log(`Server is runing : http://localhost:${port}`)
 );

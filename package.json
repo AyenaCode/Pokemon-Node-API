@@ -11,7 +11,8 @@
   "author": "Ayena",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.21.1"
+    "express": "^4.21.1",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "morgan": "^1.10.0",
